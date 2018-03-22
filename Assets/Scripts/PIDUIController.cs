@@ -19,7 +19,7 @@ public class PIDUIController : MonoBehaviour
     {
         #region 參數計算
         // Aggressive
-        ScaleSinValue = 8 + 4 * (float)Aggressive / 10;
+        ScaleSinValue = 1 + 11 * (float)Aggressive / 10;
         StartChange = Mathf.PI / 2 / ScaleSinValue;
 
         // Stable
