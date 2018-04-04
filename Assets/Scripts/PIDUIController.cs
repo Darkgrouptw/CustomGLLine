@@ -19,11 +19,11 @@ public class PIDUIController : MonoBehaviour
     {
         #region 參數計算
         // Aggressive
-        ScaleSinValue = 1 + 11 * (float)Aggressive / 10;
+        ScaleSinValue = 0.91f + 11 * (float)Aggressive / 10;
         StartChange = Mathf.PI / 2 / ScaleSinValue;
 
         // Stable
-        ScaleAfterChnage = CircleFunction((float)Stable / 10) * 4;
+        ScaleAfterChnage = CircleFunction((float)Stable / 10) * 1.5f;
 
         // Tolerate
         float TolerateValue = CircleFunction((float)Tolerate / 10) * 5 + 5;
@@ -34,7 +34,7 @@ public class PIDUIController : MonoBehaviour
             return Mathf.Sin(ScaleSinValue * x);
         else
         {
-            float baseWave = Mathf.Sin(ScaleSinValue * ScaleAfterChnage * (x - StartChange) + Mathf.PI / 2);
+            float baseWave = Mathf.Sin(ScaleSinValue * ScaleAfterChnage * ScaleAfterChnage * (x - StartChange) + Mathf.PI / 2);
             float StableWave = baseWave * Mathf.Pow(1 - x + StartChange, TolerateValue);
             float ScaleBaseWave = StableWave * (1 - GoalValue) + GoalValue;
             return ScaleBaseWave;
